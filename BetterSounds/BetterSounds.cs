@@ -14,28 +14,16 @@ namespace BetterSounds
         public const string PluginName = "BetterSounds";
         public const string PluginVersion = "1.0.0";
 
+        private Harmony patcher;
+
         public void Awake()
         {
             // Init our logging class so that we can properly log for debugging
             Log.Init(Logger);
 
-            Harmony.CreateAndPatchAll(typeof(Patch));
-
-            GlobalEventManager.onCharacterDeathGlobal += GlobalEventManager_onCharacterDeathGlobal;
-        }
-
-        private void GlobalEventManager_onCharacterDeathGlobal(DamageReport report)
-        {
-            //make sure these are both nonnull
-            if (!report.attacker || !report.attackerBody)
-            {
-                return;
-            }
-
-        }
-
-        private void Update()
-        {
+            //Init the patcher
+            patcher = new Harmony(PluginName);
+            patcher.PatchAll(typeof(SoundPatcher));
         }
     }
 }
