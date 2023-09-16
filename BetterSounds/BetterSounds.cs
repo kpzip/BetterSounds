@@ -1,5 +1,4 @@
 using BepInEx;
-using RoR2;
 using HarmonyLib;
 
 namespace BetterSounds
@@ -7,7 +6,6 @@ namespace BetterSounds
     [BepInPlugin(PluginGUID, PluginName, PluginVersion)]
     public class BetterSounds : BaseUnityPlugin
     {
-        
         //Plugin Data
         public const string PluginGUID = PluginAuthor + "." + PluginName;
         public const string PluginAuthor = "kpzip";
